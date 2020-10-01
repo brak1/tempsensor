@@ -1,0 +1,22 @@
+NOTES FOR WORKING WITH NTI ENVIROMUX E-MICRO-TRHP
+
+PDF manual:   http://www.networktechinc.com/pdf/man220.pdf
+
+REST API 
+This command from the manual returns additional debug garbage up front apparently: 
+curl -k -v -X GET -u root:nti "https://10.42.0.107/appAll.json"
+
+This returns just the JSON data: 
+curl -k -u root:nti "https://10.42.0.107/appAll.json"
+
+Manually setting up bridging: 
+
+ip addr flush dev wlp2s0
+ip addr flush dev enp0s25
+brctl addbr bridge0
+brctl addif bridge0 wlp2s0 enp0s25
+ip link set dev bridge0 up
+
+
+
+
